@@ -1,6 +1,6 @@
 const { gql } = require('apollo-server');
 
-module.exports = gql `
+module.exports = gql`
 
 type Device {
     id: Int!

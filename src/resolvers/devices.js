@@ -35,7 +35,7 @@ module.exports = {
             console.log(uuid);
             return await db.devices.findOne({
                 where: {
-                    uuid:uuid
+                    uuid: uuid
                 }
             })
         }

@@ -1,10 +1,10 @@
-const {GraphQLDateTime} = require('graphql-iso-date');
+const { GraphQLDateTime } = require('graphql-iso-date');
 const deviceResolver = require('./devices');
 const experimentResolver = require('./experiments');
 
 const customScalarResolver = {
-    Date: GraphQLDateTime,
-  };
+  Date: GraphQLDateTime,
+};
 
 
-module.exports = [customScalarResolver, deviceResolver, experimentResolver ]
+module.exports = [customScalarResolver, deviceResolver, experimentResolver]

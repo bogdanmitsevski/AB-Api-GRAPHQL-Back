@@ -1,0 +1,32 @@
+{
+  "name": "ab-api-graphql-back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bogdanmitsevski/AB-Api-GRAPHQL-Back.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bogdanmitsevski/AB-Api-GRAPHQL-Back/issues"
+  },
+  "homepage": "https://github.com/bogdanmitsevski/AB-Api-GRAPHQL-Back#readme",
+  "dependencies": {
+    "apollo-server": "^2.26.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "graphql": "^14.6.0",
+    "graphql-iso-date": "^3.6.1",
+    "nodemon": "^2.0.20",
+    "pg": "^8.8.0",
+    "sequelize": "^6.28.0",
+    "uuid": "^9.0.0"
+  }
+}

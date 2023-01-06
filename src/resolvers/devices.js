@@ -31,12 +31,10 @@ module.exports = {
             })
         },
 
-        async currentDevice(uuid) {
+        async currentDevice(parent, {uuid}) {
             console.log(uuid);
             return await db.devices.findOne({
-                where: {
-                    uuid: uuid
-                }
+                where: {uuid}
             })
         }
 

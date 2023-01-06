@@ -13,7 +13,7 @@ type Device {
   extend type Query {
 
     allDevices: [Device]
-    currentDevice(uuid:String!): [Device]
+    currentDevice(uuid:String!): Device
     totalDevicesByGroupA: Int
     totalDevicesByGroupB: Int
     totalDevicesByGroupC: Int

@@ -1,5 +1,4 @@
 const db = require("../../models")
-//const uuid = require('uuid');
 const { v4: uuidv4 } = require('uuid');
 
 module.exports = {
@@ -35,9 +34,12 @@ module.exports = {
     },
 
     Mutation: {
-        async Device(parent, { uuid }) {
+        async Device(parent, args, context) {
+            console.log(context);
             const currentDevice = await db.devices.findOne({
-                where: { uuid }
+                where: {
+                    uuid: context.deviceToken
+                }
             })
             if (currentDevice) {
                 const findExperimentKey = await db.experiments.findOne({
@@ -51,7 +53,7 @@ module.exports = {
             else {
                 const devicesCount = await db.devices.count()
                 const newDevice = await db.devices.create({
-                    uuid: uuidv4(),
+                    uuid: context.deviceToken,
                     experimentId: (devicesCount % 3) + 1
                 });
                 await newDevice.save();

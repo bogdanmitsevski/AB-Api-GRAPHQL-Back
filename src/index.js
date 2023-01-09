@@ -11,7 +11,10 @@ app.use(express.text());
 
 const server = new ApolloServer({
     typeDefs: schema,
-    resolvers
+    resolvers,
+    context: ({ req }) => {
+        return { deviceToken: req.headers['device-token'] }
+    }
 
 })
 

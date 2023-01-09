@@ -22,7 +22,7 @@ type Device {
 
   extend type Mutation {
 
-    Device(uuid:String!): Device
+    Device: Device
 
   }
 `;

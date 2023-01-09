@@ -1,10 +1,11 @@
 const db = require("../../models")
-const uuid = require('uuid');
+//const uuid = require('uuid');
+const { v4: uuidv4 } = require('uuid');
 
 module.exports = {
     Query: {
         async allDevices() {
-            return await db.devices.findAll();
+            return await db.devices.count();
         },
 
         async totalDevicesByGroupA() {
@@ -29,24 +30,39 @@ module.exports = {
                     experimentId: 3
                 }
             })
-        },
-
-        async currentDevice(parent, {uuid}) {
-            console.log(uuid);
-            return await db.devices.findOne({
-                where: {uuid}
-            })
         }
 
     },
 
     Mutation: {
-        async newDevice() {
-            const devicesCount = await db.devices.count()
-            return await db.devices.create({
-                uuid: uuid.v4(),
-                experimentId: (devicesCount % 3) + 1
+        async Device(parent, { uuid }) {
+            const currentDevice = await db.devices.findOne({
+                where: { uuid }
             })
+            if (currentDevice) {
+                const findExperimentKey = await db.experiments.findOne({
+                    where: {
+                        id: currentDevice.experimentId
+                    }
+                })
+                currentDevice.experimentValue = findExperimentKey.value;
+                return currentDevice;
+            }
+            else {
+                const devicesCount = await db.devices.count()
+                const newDevice = await db.devices.create({
+                    uuid: uuidv4(),
+                    experimentId: (devicesCount % 3) + 1
+                });
+                await newDevice.save();
+                const findExperimentKey = await db.experiments.findOne({
+                    where: {
+                        id: newDevice.experimentId
+                    }
+                })
+                newDevice.experimentValue = findExperimentKey.value;
+                return newDevice;
+            }
         }
     }
 }

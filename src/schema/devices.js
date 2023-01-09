@@ -8,12 +8,12 @@ type Device {
     experimentId: Int!
     createdAt: Date!
     updatedAt: Date!
+    experimentValue: String!
   }
 
   extend type Query {
 
-    allDevices: [Device]
-    currentDevice(uuid:String!): Device
+    allDevices: Int
     totalDevicesByGroupA: Int
     totalDevicesByGroupB: Int
     totalDevicesByGroupC: Int
@@ -22,7 +22,7 @@ type Device {
 
   extend type Mutation {
 
-    newDevice: Device
+    Device(uuid:String!): Device
 
   }
 `;

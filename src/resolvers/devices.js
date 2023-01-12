@@ -1,5 +1,4 @@
 const db = require("../../models")
-const { v4: uuidv4 } = require('uuid');
 
 module.exports = {
     Query: {
@@ -35,7 +34,6 @@ module.exports = {
 
     Mutation: {
         async Device(parent, args, context) {
-            console.log(context);
             const currentDevice = await db.devices.findOne({
                 where: {
                     uuid: context.deviceToken
